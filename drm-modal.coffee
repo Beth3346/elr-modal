@@ -1,40 +1,32 @@
 ###############################################################################
 # Displays a modal window
 ###############################################################################
+"use strict"
 
 ( ($) ->
+    class window.DrmModal
+        constructor: (@buttons = $('button.drm-modal-open'), @lightbox = $('div.drm-modal-lightbox'), @speed = 300) ->
+            self = @
+            modals = self.lightbox.find 'div.drm-modal'
+            close = modals.find 'button.drm-modal-close'
 
-    drmModal = {
-        modalButtons: $ '.drm-modal-open'
-        lightbox: $ '.drm-modal-lightbox'
-
-        config: {
-            speed: 300
-        }
-
-        init: (config) ->
-            $.extend @.config, config
-            modals = @.lightbox.find '.drm-modal'
-            close = modals.find '.drm-modal-close'
-
-            @.modalButtons.on 'click', @.showModal
+            self.buttons.on 'click', -> self.showModal.call @, self.speed
             
-            close.on 'click', @.hideModal
+            close.on 'click', $.proxy self.hideModal, self
             
-            @.lightbox.on 'click', @.hideModal
+            self.lightbox.on 'click', $.proxy self.hideModal, self
             
             modals.on 'click', (e) ->
                 e.stopPropagation()
 
-        showModal: ->
+        showModal: (speed) ->
             modalId = $(@).data 'modal'
-            $("##{modalId}").fadeIn drmModal.config.speed
+            $("##{modalId}").fadeIn speed
 
         hideModal: (e) ->
-            drmModal.lightbox.fadeOut drmModal.config.speed 
+            @lightbox.fadeOut @speed
             e.preventDefault()
-    }
-
-    drmModal.init()
+            
+    new DrmModal()
 
 ) jQuery

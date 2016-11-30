@@ -1,6 +1,6 @@
 {
   "name": "elr-modal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a basic content modal",
   "main": "dist/elr-modal.js",
   "repository": {

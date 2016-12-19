@@ -1,4 +1,6 @@
-# elr-modal 
+# elr-modal
+
+[![Build Status](https://travis-ci.org/Beth3346/elr-modal.svg?branch=master)](https://travis-ci.org/Beth3346/elr-modal)
 
 a basic content modal
 

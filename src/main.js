@@ -1,7 +1,7 @@
-import elrUtlities from 'elr-utility-lib';
+import elrUI from 'elr-ui';
 const $ = require('jquery');
 
-let elr = elrUtlities();
+let ui = elrUI();
 
 const elrModal = function({
     modalClass = 'elr-modal',
@@ -14,12 +14,12 @@ const elrModal = function({
     const $modals = $(`.${modalClass}`);
 
     const createLightbox = function(speed, $modal) {
-        const $close = elr.createElement('button', {
+        const $close = ui.createElement('button', {
             class: 'close',
             text: 'x'
         });
 
-        const $lightbox = elr.createElement('div', {
+        const $lightbox = ui.createElement('div', {
             class: lightboxClass
         });
 

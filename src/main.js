@@ -30,8 +30,8 @@ const elrModal = function({
             const modalId = $(this).data('modal');
             const $modal = $(`#${modalId}`);
 
-            ul.addOverlay(function() {
-                $modal.appendTo($lightbox).css({'display': 'flex'});
+            ui.addOverlay(function() {
+                $modal.appendTo('.elr-blackout').css({'display': 'flex'});
             });
             // createLightbox(speed, $modal);
         },

@@ -10,41 +10,43 @@ const elrModal = function({
     buttonClass = 'elr-modal-open',
     speed = 300
 } = {}) {
-    const self = {};
+    const self = {
+        // createLightbox(speed, $modal) {
+        //     const $close = ui.createElement('button', {
+        //         class: 'close',
+        //         text: 'x'
+        //     });
+
+        //     const $lightbox = ui.createElement('div', {
+        //         class: lightboxClass
+        //     });
+
+        //     $lightbox.hide().appendTo('body').fadeIn(speed, function() {
+        //         $close.appendTo($lightbox);
+        //         $modal.appendTo($lightbox).css({'display': 'flex'});
+        //     });
+        // },
+        showModal(speed) {
+            const modalId = $(this).data('modal');
+            const $modal = $(`#${modalId}`);
+
+            ul.addOverlay(function() {
+                $modal.appendTo($lightbox).css({'display': 'flex'});
+            });
+            // createLightbox(speed, $modal);
+        },
+        hideModal(speed) {
+            const $lightbox = $(`.${lightboxClass}`);
+            const $modal = $lightbox.find(`.${modalClass}`);
+
+            $lightbox.fadeOut(speed, function() {
+                $modal.hide().appendTo('body');
+                $(this).remove();
+            });
+        }
+    };
+
     const $modals = $(`.${modalClass}`);
-
-    const createLightbox = function(speed, $modal) {
-        const $close = ui.createElement('button', {
-            class: 'close',
-            text: 'x'
-        });
-
-        const $lightbox = ui.createElement('div', {
-            class: lightboxClass
-        });
-
-        $lightbox.hide().appendTo('body').fadeIn(speed, function() {
-            $close.appendTo($lightbox);
-            $modal.appendTo($lightbox).css({'display': 'flex'});
-        });
-    };
-
-    const showModal = function(speed) {
-        const modalId = $(this).data('modal');
-        const $modal = $(`#${modalId}`);
-
-        createLightbox(speed, $modal);
-    };
-
-    const hideModal = function(speed) {
-        const $lightbox = $(`.${lightboxClass}`);
-        const $modal = $lightbox.find(`.${modalClass}`);
-
-        $lightbox.fadeOut(speed, function() {
-            $modal.hide().appendTo('body');
-            $(this).remove();
-        });
-    };
 
     if ($modals.length) {
         const $body = $('body');
@@ -54,23 +56,23 @@ const elrModal = function({
         $body.on('click', `.${buttonClass}`, function(e) {
             e.preventDefault();
             e.stopPropagation();
-            showModal.call(this, speed);
+            self.showModal.call(this, speed);
         });
 
         $(`.${closeClass}`).on('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            hideModal();
+            self.hideModal();
         });
 
         $body.on('click', `.${lightboxClass} .close`, function(e) {
             e.preventDefault();
             e.stopPropagation();
-            hideModal();
+            self.hideModal();
         });
 
         $body.on('click', function() {
-            hideModal();
+            self.hideModal();
         });
 
         $modals.on('click', function(e) {

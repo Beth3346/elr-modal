@@ -1,6 +1,6 @@
 # elr-modal
 
-[![Build Status](https://travis-ci.org/Beth3346/elr-modal.svg?branch=master)](https://travis-ci.org/Beth3346/elr-modal)
+[![Build Status](https://travis-ci.org/Beth3346/elr-modal.svg?branch=master)](https://travis-ci.org/Beth3346/elr-modal) [![Greenkeeper badge](https://badges.greenkeeper.io/Beth3346/elr-modal.svg)](https://greenkeeper.io/)
 
 a basic content modal
 
